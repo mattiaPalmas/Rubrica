@@ -10,21 +10,20 @@ import android.widget.Toast;
 
 public class NewContact extends AppCompatActivity {
 
-    DatabaseHelper dbHelper;
+
     EditText nameText,surnameText, phoneText;
     Button addDataButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.new_contact_activity);
 
         nameText = (EditText) findViewById(R.id.nameText);
         surnameText = (EditText) findViewById(R.id.surnameText);
         phoneText = (EditText) findViewById(R.id.phoneData);
         addDataButton = (Button) findViewById(R.id.addDataButton);
 
-        dbHelper = new DatabaseHelper(this);
         addData();
     }
 
@@ -35,7 +34,8 @@ public class NewContact extends AppCompatActivity {
                 Log.d("test",nameText.getText().toString());
                 Log.d("test",surnameText.getText().toString());
                 Log.d("test",phoneText.getText().toString());
-                boolean isInsered = dbHelper.insertData(nameText.getText().toString(),
+                boolean isInsered = RubricaActivity.dbHelper.insertData(
+                        nameText.getText().toString(),
                         surnameText.getText().toString(),
                         phoneText.getText().toString());
 

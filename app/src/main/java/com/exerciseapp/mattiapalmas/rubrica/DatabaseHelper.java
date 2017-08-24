@@ -35,13 +35,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    /**
+     * insert data into the database.
+     * @param name name for the contact.
+     * @param lastName last name for the contact.
+     * @param phone phone number.
+     * @return
+     */
     public boolean insertData(String name, String lastName,String phone){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2,name);
         contentValues.put(COL_3,lastName);
         contentValues.put(COL_4,phone);
-
 
         long result = db.insert(TABLE_NAME,null,contentValues);
 
