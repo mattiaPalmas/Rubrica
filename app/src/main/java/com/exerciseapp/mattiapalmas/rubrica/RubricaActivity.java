@@ -1,7 +1,9 @@
 package com.exerciseapp.mattiapalmas.rubrica;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,17 +37,8 @@ public class RubricaActivity extends AppCompatActivity {
         listItems = new ArrayList<>();
 
         insertContactsIntoViews();
+
         }
-
-
-    /**
-     * open new activity where you can add a contact.
-     * @param view
-     */
-    public void addContact(View view){
-                Intent intent = new Intent(this,NewContact.class);
-                startActivity(intent);
-    }
 
     @Override
     protected void onResume() {
@@ -53,11 +46,32 @@ public class RubricaActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    /**
+     * open new activity where you can add a contact.
+     * @param view
+     */
+    public void addContact(View view){
+        Intent intent = new Intent(this,NewContact.class);
+        startActivity(intent);
+
+        if (NewContact.isNewContact){
+            Cursor res = dbHelper.getLastAddedData();
+            System.out.println(res);
+            listItems.add(new ContactModel(res.getString(0),res.getString(1),res.getString(2)));
+        }
+    }
+
+
 
     /**
      * Read from database and insert data into recycleview.
      */
     public void insertContactsIntoViews(){
+
+        listItems.clear();
+        adapter = new AdaptorRecycleView(listItems,getApplicationContext());
+        recycleView.setAdapter(adapter);
+
 
         if (dbHelper != null){
             Cursor res = dbHelper.getAllData();
@@ -67,12 +81,17 @@ public class RubricaActivity extends AppCompatActivity {
             }
             else{
                 while (res.moveToNext()){
-                    res.getString(1);
                     listItems.add(new ContactModel(res.getString(1),res.getString(2),res.getString(3)));
                 }
+
+
+                /**
+                 * reload recycleview
+                 */
                 adapter = new AdaptorRecycleView(listItems,getApplicationContext());
                 recycleView.setAdapter(adapter);
             }
         }
-}
+    }
+
 }

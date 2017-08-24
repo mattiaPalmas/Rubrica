@@ -1,5 +1,7 @@
 package com.exerciseapp.mattiapalmas.rubrica;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +12,7 @@ import android.widget.Toast;
 
 public class NewContact extends AppCompatActivity {
 
-
+    public static boolean isNewContact;
     EditText nameText,surnameText, phoneText;
     Button addDataButton;
 
@@ -23,8 +25,9 @@ public class NewContact extends AppCompatActivity {
         surnameText = (EditText) findViewById(R.id.surnameText);
         phoneText = (EditText) findViewById(R.id.phoneData);
         addDataButton = (Button) findViewById(R.id.addDataButton);
-
+        isNewContact=false;
         addData();
+
     }
 
     public void addData(){
@@ -41,6 +44,7 @@ public class NewContact extends AppCompatActivity {
 
                 if (isInsered){
                     Toast.makeText(NewContact.this, "data have been inserted", Toast.LENGTH_LONG).show();
+                    isNewContact=true;
                 }
                 else {
                     Toast.makeText(NewContact.this, "Data not insert", Toast.LENGTH_LONG).show();
