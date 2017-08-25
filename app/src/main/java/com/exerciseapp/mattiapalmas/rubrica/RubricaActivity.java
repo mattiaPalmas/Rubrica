@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,8 +67,6 @@ public class RubricaActivity extends AppCompatActivity {
         }
     }
 
-
-
     /**
      * Read from database and insert data into recycleview.
      */
@@ -106,6 +105,7 @@ public class RubricaActivity extends AppCompatActivity {
                 contact.setDeleteBtnVisible(true);
             }
             deleteContact.setText("X");
+            deleteContact.setTextColor(Color.parseColor("#DE0000"));
             adapter = new AdaptorRecycleView(listItems,getApplicationContext());
             recycleView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -116,6 +116,7 @@ public class RubricaActivity extends AppCompatActivity {
                 contact.setDeleteBtnVisible(false);
             }
             deleteContact.setText("-");
+            deleteContact.setTextColor(Color.parseColor("#000000"));
             adapter = new AdaptorRecycleView(listItems,getApplicationContext());
             recycleView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -124,4 +125,9 @@ public class RubricaActivity extends AppCompatActivity {
 
 
     }
+
+    public static void deleteButtonClicked(String s) {
+
+    }
+
 }

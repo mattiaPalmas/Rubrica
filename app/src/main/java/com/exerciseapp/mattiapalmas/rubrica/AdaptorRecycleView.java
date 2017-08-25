@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class AdaptorRecycleView extends RecyclerView.Adapter<AdaptorRecycleView.
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
         public TextView name;
         public TextView lastName;
@@ -85,6 +86,29 @@ public class AdaptorRecycleView extends RecyclerView.Adapter<AdaptorRecycleView.
             phoneNumber = (TextView) itemView.findViewById(R.id.phoneText);
             lastName = (TextView) itemView.findViewById(R.id.lastName);
             deleteBtn = (Button) itemView.findViewById(R.id.deleteBtn);
+            deleteBtn.setOnClickListener(this);
+            deleteBtn.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == deleteBtn.getId()){
+
+                //delete item in recycleview
+                int position = getAdapterPosition();
+                RubricaActivity.dbHelper.deleteRowDatabase(listItems.get(position).getName(),listItems.get(position).getPhoneNumber());
+                listItems.remove(position);
+                notifyItemRemoved(position);
+            } else {
+                Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            return false;
         }
     }
+
+
 }

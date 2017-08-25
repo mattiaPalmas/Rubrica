@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by mattia palmas on 2017-08-21.
@@ -68,5 +70,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getLastAddedData(){
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY id DESC LIMIT 0, 1" ,null);
+    }
+
+    public void deleteRowDatabase(String name, String number) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + COL_2 + " = '" + name + "' AND " + COL_4 + " = '" +
+         number + "';");
+        Log.d("delete", "inside delete");
     }
 }
