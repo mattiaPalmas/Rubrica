@@ -22,13 +22,18 @@ public class RubricaActivity extends AppCompatActivity {
     private RecyclerView recycleView;
     private RecyclerView.Adapter adapter;
     private List<ContactModel> listItems;
+    private Button deleteContact;
+    private boolean isDeleteClicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rubrica);
+
         newContact = (Button) findViewById(R.id.newContactButton);
         dbHelper = new DatabaseHelper(this);
+        deleteContact = (Button) findViewById(R.id.deleteContact);
+        isDeleteClicked = false;
 
         recycleView = (RecyclerView) findViewById(R.id.recycleView);
         recycleView.setHasFixedSize(true);
@@ -68,6 +73,7 @@ public class RubricaActivity extends AppCompatActivity {
      */
     public void insertContactsIntoViews(){
 
+        // delete recycle by adding an empty list item
         listItems.clear();
         adapter = new AdaptorRecycleView(listItems,getApplicationContext());
         recycleView.setAdapter(adapter);
@@ -85,13 +91,37 @@ public class RubricaActivity extends AppCompatActivity {
                 }
 
 
-                /**
-                 * reload recycleview
-                 */
+                //reload recycleview
                 adapter = new AdaptorRecycleView(listItems,getApplicationContext());
                 recycleView.setAdapter(adapter);
             }
         }
     }
 
+    public void deleteContact(View view) {
+
+
+        if (!isDeleteClicked){
+            for (ContactModel contact : listItems) {
+                contact.setDeleteBtnVisible(true);
+            }
+            deleteContact.setText("X");
+            adapter = new AdaptorRecycleView(listItems,getApplicationContext());
+            recycleView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            isDeleteClicked = true;
+        }
+        else{
+            for (ContactModel contact : listItems) {
+                contact.setDeleteBtnVisible(false);
+            }
+            deleteContact.setText("-");
+            adapter = new AdaptorRecycleView(listItems,getApplicationContext());
+            recycleView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            isDeleteClicked = false;
+        }
+
+
+    }
 }

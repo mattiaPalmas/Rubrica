@@ -11,12 +11,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <!--<Button
+        <Button
             android:id="@+id/deleteContact"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:onClick="deleteContact"
             android:text="-" />
--->
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"

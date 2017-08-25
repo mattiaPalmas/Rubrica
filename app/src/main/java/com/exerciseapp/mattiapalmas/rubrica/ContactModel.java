@@ -9,6 +9,7 @@ public class ContactModel {
     private String name;
     private String phoneNumber;
     private String lastName;
+    private boolean isDeleteBtnVisible;
 
 
     public ContactModel(String name, String lastName, String phoneNumber) {
@@ -32,5 +33,13 @@ public class ContactModel {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public boolean isDeleteBtnVisible() {
+        return isDeleteBtnVisible;
+    }
+
+    public void setDeleteBtnVisible(boolean deleteBtnVisible) {
+        isDeleteBtnVisible = deleteBtnVisible;
     }
 }

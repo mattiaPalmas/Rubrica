@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -49,6 +50,12 @@ public class AdaptorRecycleView extends RecyclerView.Adapter<AdaptorRecycleView.
         holder.name.setText(listItem.getName());
         holder.lastName.setText(listItem.getLastName());
         holder.phoneNumber.setText(listItem.getPhoneNumber());
+        if (listItem.isDeleteBtnVisible()){
+            holder.deleteBtn.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.deleteBtn.setVisibility(View.GONE);
+        }
 
     }
 
@@ -68,6 +75,7 @@ public class AdaptorRecycleView extends RecyclerView.Adapter<AdaptorRecycleView.
         public TextView name;
         public TextView lastName;
         public TextView phoneNumber;
+        public Button deleteBtn;
 
 
         public ViewHolder(View itemView) {
@@ -76,6 +84,7 @@ public class AdaptorRecycleView extends RecyclerView.Adapter<AdaptorRecycleView.
             name = (TextView) itemView.findViewById(R.id.nameContactText);
             phoneNumber = (TextView) itemView.findViewById(R.id.phoneText);
             lastName = (TextView) itemView.findViewById(R.id.lastName);
+            deleteBtn = (Button) itemView.findViewById(R.id.deleteBtn);
         }
     }
 }
