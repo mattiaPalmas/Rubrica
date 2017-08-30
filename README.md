@@ -6,7 +6,7 @@
 [![Language](https://img.shields.io/badge/language-java-blue.svg?style=flat)](https://www.java.com/en/)
 ---
 
-Customize Contact app.
+Customize Contact app, where you can add contacts and delete them.
 
 ---
 
@@ -15,3 +15,10 @@ Customize Contact app.
 -Android studio <br />
 -SQLite database <br />
 -RecycleView <br />
+
+---
+
+**Why I did this app?**
+
+I wanted to get more practice by working with a database and checking it fro command prompt.
+---
