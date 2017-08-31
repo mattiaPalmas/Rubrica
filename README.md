@@ -20,5 +20,6 @@ Customize Contact app, where you can add contacts and delete them.
 
 **Why I did this app?**
 
-I wanted to get more practice by working with a database and checking it fro command prompt.
+---
+I wanted to get more practice by working with a database and checking it from command prompt.
 ---
